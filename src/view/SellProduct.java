@@ -5,16 +5,10 @@
  */
 package view;
 
-import static controller.ProductController.getAllProductByQuery;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import java.util.ArrayList;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
-import object.Product;
+
 
 
 /**
@@ -130,7 +124,9 @@ public class SellProduct extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
          try {
             
-            ArrayList<Product> lista = getAllProductByQuery();
+            //ArrayList<Product> lista1 = getAllProductByQuery();
+            ArrayList<generateBySoap.Product> lista  = new ArrayList<>(getAllProduct());
+         
 
             if (lista.isEmpty()) {
                 javax.swing.JOptionPane.showMessageDialog(this, "No hay datos, verifica tu escritura");
@@ -149,9 +145,7 @@ public class SellProduct extends javax.swing.JFrame {
                 
                
 
-                for (Product item : lista) {
-                    
-                                        
+                for (generateBySoap.Product item : lista) {                    
                     Object[] fila = new Object[7]; // le pasamos la cantida de columnas
                     fila[0] = item.getId();
                     fila[1] = item.getName();
@@ -223,4 +217,10 @@ public class SellProduct extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbAllProduct;
     // End of variables declaration//GEN-END:variables
+
+    private static java.util.List<generateBySoap.Product> getAllProduct() {
+        generateBySoap.ProductService_Service service = new generateBySoap.ProductService_Service();
+        generateBySoap.ProductService port = service.getProductServicePort();
+        return port.getAllProduct();
+    }
 }
