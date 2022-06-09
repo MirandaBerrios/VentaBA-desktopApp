@@ -52,6 +52,7 @@ public class SellProduct extends javax.swing.JFrame {
         jLabel1.setText("Venta Buenos AIres");
 
         tbAllProduct.setAutoCreateRowSorter(true);
+        tbAllProduct.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tbAllProduct.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
